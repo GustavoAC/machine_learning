@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
 
 train_set = pd.read_csv('./dados/optdigits.tra', header = None)
 test_set = pd.read_csv('./dados/optdigits.tes', header = None)
@@ -13,10 +13,10 @@ classes = train_set.values[:, 64]
 test_data = test_set.values[:, :-1]
 excepted_classes = test_set.values[:, 64]
 
-decisionTree = DecisionTreeClassifier()
-decisionTree = decisionTree.fit(raw_data, classes)
+knn_classifier = KNeighborsClassifier()
+knn_classifier = knn_classifier.fit(raw_data, classes)
 
-predict_results = decisionTree.predict(test_data)
+predict_results = knn_classifier.predict(test_data)
 
 correct = 0
 wrong = 0
