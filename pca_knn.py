@@ -1,14 +1,13 @@
 import pandas as pd
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
 train_set = pd.read_csv('./dados/optdigits.tra', header = None)
 test_set = pd.read_csv('./dados/optdigits.tes', header = None)
 
-# Training data an
+# Training data and classes
 train_img = train_set.values[:, :-1]
 train_lbl = train_set.values[:, 64]
 

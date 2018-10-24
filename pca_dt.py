@@ -1,14 +1,13 @@
 import pandas as pd
 import numpy as np
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
 train_set = pd.read_csv('./dados/optdigits.tra', header = None)
 test_set = pd.read_csv('./dados/optdigits.tes', header = None)
 
-# Training data an
+# Training data and classes
 train_img = train_set.values[:, :-1]
 train_lbl = train_set.values[:, 64]
 
@@ -16,14 +15,14 @@ train_lbl = train_set.values[:, 64]
 test_img = test_set.values[:, :-1]
 test_lbl = test_set.values[:, 64]
 
-scaler = StandardScaler()
+# scaler = StandardScaler()
 
-# Fit on training set only.
-scaler.fit(train_img)
+# # Fit on training set only.
+# scaler.fit(train_img)
 
-# Apply transform to both the training set and the test set.
-train_img = scaler.transform(train_img)
-test_img = scaler.transform(test_img)
+# # Apply transform to both the training set and the test set.
+# train_img = scaler.transform(train_img)
+# test_img = scaler.transform(test_img)
 
 pca = PCA(0.95)
 pca.fit(train_img)
