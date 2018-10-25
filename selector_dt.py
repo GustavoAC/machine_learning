@@ -7,6 +7,7 @@ test_set = pd.read_csv('./dados/optdigits.tes', header = None)
 
 base_corr = train_set.corr()[64]
 filter = [1 if np.abs(corr) > 0.1 else 0 for corr in base_corr]
+print "Filter:", filter
 
 def filter_set(data, filter):
     ret = []

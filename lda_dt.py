@@ -13,11 +13,13 @@ train_lbl = train_set.values[:, 64]
 test_img = test_set.values[:, :-1]
 test_lbl = test_set.values[:, 64]
 
-pca = LinearDiscriminantAnalysis()
-pca.fit(train_img, train_lbl)
+lda = LinearDiscriminantAnalysis()
+lda.fit(train_img, train_lbl)
 
-train_img = pca.transform(train_img)
-test_img = pca.transform(test_img)
+train_img = lda.transform(train_img)
+test_img = lda.transform(test_img)
+
+print "Num Components:", len(test_img[0])
 
 decisionTree = DecisionTreeClassifier()
 decisionTree = decisionTree.fit(train_img, train_lbl)

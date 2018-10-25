@@ -19,6 +19,8 @@ lda.fit(train_img, train_lbl)
 train_img = lda.transform(train_img)
 test_img = lda.transform(test_img)
 
+print "Num Components:", len(test_img[0])
+
 knn_classifier = KNeighborsClassifier()
 knn_classifier = knn_classifier.fit(train_img, train_lbl)
 

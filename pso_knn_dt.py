@@ -263,7 +263,7 @@ lb = [0 for _ in range(64)]
 ub = [1 for _ in range(64)]
 
 print "Starting PSO... "
-xopt, fopt = pso(fitness, lb, ub, swarmsize=20, maxiter=40)
+xopt, fopt = pso(fitness, lb, ub, swarmsize=15, maxiter=30)
 
 normalized = [1 if x >= 0.5 else 0 for x in xopt]
 
