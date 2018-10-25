@@ -5,12 +5,21 @@ from sklearn.tree import DecisionTreeClassifier
 train_set = pd.read_csv('./dados/optdigits.tra', header = None)
 test_set = pd.read_csv('./dados/optdigits.tes', header = None)
 
-# print train_set.corr()[64].mean()
+base_corr = train_set.corr()[64]
+filter = [1 if np.abs(corr) > 0.1 else 0 for corr in base_corr]
 
-raw_data = train_set.values[:, :-1]
+def filter_set(data, filter):
+    ret = []
+    for row in data:
+        new_row = [row[i] for i in range(len(row)) if filter[i] == 1]
+        ret.append(new_row)
+
+    return ret
+
+raw_data = filter_set(train_set.values[:, :-1], filter)
 classes = train_set.values[:, 64]
 
-test_data = test_set.values[:, :-1]
+test_data = filter_set(test_set.values[:, :-1], filter)
 excepted_classes = test_set.values[:, 64]
 
 decisionTree = DecisionTreeClassifier()
@@ -26,5 +35,6 @@ for row in range(len(predict_results)):
     else:
         wrong = wrong + 1
 
-print correct
-print wrong
+print "Decision Tree results:"
+print "Correct:", correct, ", incorrect:", wrong
+
