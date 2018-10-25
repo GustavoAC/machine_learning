@@ -1,7 +1,5 @@
 import pandas as pd
-import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.preprocessing import StandardScaler
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 train_set = pd.read_csv('./dados/optdigits.tra', header = None)
@@ -14,15 +12,6 @@ train_lbl = train_set.values[:, 64]
 # Test data and classes
 test_img = test_set.values[:, :-1]
 test_lbl = test_set.values[:, 64]
-
-scaler = StandardScaler()
-
-# Fit on training set only.
-scaler.fit(train_img)
-
-# Apply transform to both the training set and the test set.
-train_img = scaler.transform(train_img)
-test_img = scaler.transform(test_img)
 
 lda = LinearDiscriminantAnalysis()
 lda.fit(train_img, train_lbl)
