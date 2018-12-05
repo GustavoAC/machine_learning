@@ -10,7 +10,7 @@
 --- Os dados são normais?
 --- Os dados possuem uma relação?
 
-- Rede Neural
+- Rede Neural >>> OK ORIG
 --- Backpropagation padrão com momentum de 0.8
 --- Variando num iterações, num nós ocultos e taxa de aprendizado
 --- 2-fold cross validation
@@ -20,12 +20,12 @@
 
 - Qual o melhor metodo supervisionado e por quê
 
-- K-means >>> OK ORIG
+- K-means >>> OK
 --- K variando entre 10 números com o número de classes no meio, 5 execs cada
 --- Calcular índices DB
 --- Gráfico com k no X e índice DB no Y
 
-- Hierárquico >>> OK ORIG
+- Hierárquico >>> OK
 --- Variar k e montar gráfico como acima
 
 - Não supervisionado
