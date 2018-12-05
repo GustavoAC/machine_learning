@@ -43,9 +43,9 @@ test_set = pd.read_csv('./dados/optdigits.tes', header = None)
 
 complete_data = np.concatenate((train_set.values, test_set.values), axis=0)
 
-max_iter = 100
-layer_size = (37,)
-learning_rate = 0.1
+max_iter = 1000
+layer_size = (148,)
+learning_rate = 0.001
 
 for i in range(5):
     print "Execution #", i + 1

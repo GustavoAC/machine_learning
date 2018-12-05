@@ -49,13 +49,13 @@ complete_data = np.concatenate((train_set.values, test_set.values), axis=0)
 normal = 0
 not_normal = 0
 for i in range(64):
-	attribs = complete_data[:,i]
-	k2, p = stats.normaltest(attribs)
-	alpha = 1e-3
-	if p < alpha:
+    attribs = complete_data[:,i]
+    k2, p = stats.normaltest(attribs)
+    alpha = 1e-3
+    if p < alpha:
+        not_normal += 1
+    else:
         normal += 1
-    else
-		not_normal += 1
 
 print "Normal", normal
 print "Not normal", not_normal

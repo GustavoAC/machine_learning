@@ -50,7 +50,7 @@ print "Decision Tree"
 decisionTree = DecisionTreeClassifier()
 k_fold_cross_validation(k_fold, complete_data, decisionTree)
 
-print "Decision Tree - Max Depth 15"
-decisionTree = DecisionTreeClassifier(max_depth = 15)
+print "Decision Tree - Min samples leaf = 5"
+decisionTree = DecisionTreeClassifier(min_samples_leaf=5)
 k_fold_cross_validation(k_fold, complete_data, decisionTree)
 

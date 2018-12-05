@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-from sklearn.neural_network import MLPClassifier
+from scipy import stats
+from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 def k_fold_cross_validation(k_fold, complete_data, algorithm):
@@ -45,16 +46,32 @@ def k_fold_cross_validation(k_fold, complete_data, algorithm):
     print "Wrong: ", total_wrong
     print "Total: ", len(complete_data)
 
-train_set = pd.read_csv('./dados/optdigits.tra', header = None)
-test_set = pd.read_csv('./dados/optdigits.tes', header = None)
+train_set = pd.read_csv('../dados/optdigits.tra', header = None)
+test_set = pd.read_csv('../dados/optdigits.tes', header = None)
+
+#10-fold cross-validation
+k_fold = 10
 
 complete_data = np.concatenate((train_set.values, test_set.values), axis=0)
 
-max_iter = 1000
-layer_size = (20,)
-learning_rate = 0.001
+lda = LinearDiscriminantAnalysis()
+lda.fit(complete_data[:, :-1], complete_data[:, 64])
 
-for i in range(5):
-    print "Execution #", i + 1
-    nn_classifier = MLPClassifier(momentum=0.8, max_iter=max_iter, hidden_layer_sizes=layer_size, learning_rate_init=learning_rate)
-    k_fold_cross_validation(10, complete_data, nn_classifier)
+lda_data = lda.transform(complete_data[:, :-1])
+normal = 0
+not_normal = 0
+for i in range(9):
+    attribs = lda_data[:,i]
+    k2, p = stats.normaltest(attribs)
+    alpha = 1e-3
+    if p < alpha:
+        not_normal += 1
+    else:
+        normal += 1
+
+print "Normal", normal
+print "Not normal", not_normal
+
+print ">>> Gauss Naive Bayes"
+gnb = GaussianNB()
+k_fold_cross_validation(k_fold, complete_data, gnb)

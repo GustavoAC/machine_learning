@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from sklearn.neural_network import MLPClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 def k_fold_cross_validation(k_fold, complete_data, algorithm):
@@ -45,16 +45,22 @@ def k_fold_cross_validation(k_fold, complete_data, algorithm):
     print "Wrong: ", total_wrong
     print "Total: ", len(complete_data)
 
-train_set = pd.read_csv('./dados/optdigits.tra', header = None)
-test_set = pd.read_csv('./dados/optdigits.tes', header = None)
+train_set = pd.read_csv('../dados/optdigits.tra', header = None)
+test_set = pd.read_csv('../dados/optdigits.tes', header = None)
+
+#10-fold cross-validation
+k_fold = 10
 
 complete_data = np.concatenate((train_set.values, test_set.values), axis=0)
 
-max_iter = 1000
-layer_size = (20,)
-learning_rate = 0.001
+## Uniform (no-weight)
+for k in [1, 3, 5, 7, 9]:
+    print k, "NN (uniform):"
+    knn_classifier = KNeighborsClassifier(n_neighbors = k, weights = 'uniform')
+    k_fold_cross_validation(k_fold, complete_data, knn_classifier)
 
-for i in range(5):
-    print "Execution #", i + 1
-    nn_classifier = MLPClassifier(momentum=0.8, max_iter=max_iter, hidden_layer_sizes=layer_size, learning_rate_init=learning_rate)
-    k_fold_cross_validation(10, complete_data, nn_classifier)
+## Weighted (no-weight)
+for k in [1, 3, 5, 7, 9]:
+    print k, "NN (weighted):"
+    knn_classifier = KNeighborsClassifier(n_neighbors = k, weights = 'distance')
+    k_fold_cross_validation(k_fold, complete_data, knn_classifier)
