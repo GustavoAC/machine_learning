@@ -46,15 +46,20 @@ test_set = pd.read_csv('../dados/optdigits.tes', header = None)
 k_fold = 10
 
 complete_data = np.concatenate((train_set.values, test_set.values), axis=0)
-
+normal = 0
+not_normal = 0
 for i in range(64):
 	attribs = complete_data[:,i]
 	k2, p = stats.normaltest(attribs)
 	alpha = 1e-3
 	if p < alpha:
-		print "NORMAL"
-	# print k2, " ", p
+        normal += 1
+    else
+		not_normal += 1
 
-# print ">>> Gauss Naive Bayes"
-# gnb = GaussianNB()
-# k_fold_cross_validation(k_fold, complete_data, gnb)
+print "Normal", normal
+print "Not normal", not_normal
+
+print ">>> Gauss Naive Bayes"
+gnb = GaussianNB()
+k_fold_cross_validation(k_fold, complete_data, gnb)
