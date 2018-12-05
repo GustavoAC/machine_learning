@@ -20,12 +20,12 @@
 
 - Qual o melhor metodo supervisionado e por quê
 
-- K-means
+- K-means >>> OK ORIG
 --- K variando entre 10 números com o número de classes no meio, 5 execs cada
 --- Calcular índices DB
 --- Gráfico com k no X e índice DB no Y
 
-- Hierárquico
+- Hierárquico >>> OK ORIG
 --- Variar k e montar gráfico como acima
 
 - Não supervisionado
