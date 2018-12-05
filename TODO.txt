@@ -10,7 +10,7 @@
 --- Os dados são normais?
 --- Os dados possuem uma relação?
 
-- Rede Neural >>> OK ORIG
+- Rede Neural >>> OK
 --- Backpropagation padrão com momentum de 0.8
 --- Variando num iterações, num nós ocultos e taxa de aprendizado
 --- 2-fold cross validation
