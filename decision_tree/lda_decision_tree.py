@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 def k_fold_cross_validation(k_fold, complete_data, algorithm):
     start_index = 0
@@ -21,6 +22,12 @@ def k_fold_cross_validation(k_fold, complete_data, algorithm):
         test_data = i_fold_test[:, :-1]
         test_classes = i_fold_test[:, 64]
         
+        lda = LinearDiscriminantAnalysis()
+        lda.fit(train_data, train_classes)
+
+        train_data = lda.transform(train_data)
+        test_data = lda.transform(test_data)
+
         classifier = algorithm
         classifier = classifier.fit(train_data, train_classes)
         predict_results = classifier.predict(test_data)
@@ -36,7 +43,7 @@ def k_fold_cross_validation(k_fold, complete_data, algorithm):
         total_wrong += wrong
     print "Correct: ", total_correct
     print "Wrong: ", total_wrong
-    print "Total: ", len(complete_data)  
+    print "Total: ", len(complete_data)
 
 train_set = pd.read_csv('../dados/optdigits.tra', header = None)
 test_set = pd.read_csv('../dados/optdigits.tes', header = None)

@@ -3,7 +3,7 @@
 --- 10-fold validation variando k
 ----- Com e sem peso
 
-- Árvore de decisão >>> THIAGO
+- Árvore de decisão >>> OK
 --- 10-fold validation com e sem poda
 
 - Naive Bayesian
