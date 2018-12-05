@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.metrics import davies_bouldin_score
+import matplotlib.pyplot as plt
 
 train_set = pd.read_csv('./dados/optdigits.tra', header = None)
 test_set = pd.read_csv('./dados/optdigits.tes', header = None)
@@ -11,8 +12,18 @@ test_data = test_set.values[:, :-1]
 
 data = np.concatenate((raw_data, test_data), axis=0)
 
+x = []
+y = []
+
 for i in range(6, 15): 
-    for j in range(5): 
-        kmeans = KMeans(n_clusters=i)
-        kmeans = kmeans.fit(data)
-        print "num of clusters: ", i, ", run #", j, ", score: ", davies_bouldin_score(data, kmeans.labels_)  
+    kmeans = KMeans(n_clusters=i)
+    kmeans = kmeans.fit(data)
+    score = davies_bouldin_score(data, kmeans.labels_)
+    print "num of clusters: ", i, ", score: ", score
+    x.append(i)
+    y.append(score)
+
+plt.plot(x, y)
+plt.xlabel("Number of clusters")
+plt.ylabel("DB Index")
+plt.show()
