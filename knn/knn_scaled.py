@@ -38,8 +38,8 @@ def k_fold_cross_validation(k_fold, complete_data, algorithm):
     print "Wrong: ", total_wrong
     print "Total: ", len(complete_data)    
 
-train_set = pd.read_csv('./dados/optdigits.tra', header = None, dtype = 'float64')
-test_set = pd.read_csv('./dados/optdigits.tes', header = None, dtype = 'float64')
+train_set = pd.read_csv('../dados/optdigits.tra', header = None, dtype = 'float64')
+test_set = pd.read_csv('../dados/optdigits.tes', header = None, dtype = 'float64')
 
 #10-fold cross-validation
 k_fold = 10

@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 from sklearn.tree import DecisionTreeClassifier
 
-train_set = pd.read_csv('./dados/optdigits.tra', header = None)
-test_set = pd.read_csv('./dados/optdigits.tes', header = None)
+train_set = pd.read_csv('../dados/optdigits.tra', header = None)
+test_set = pd.read_csv('../dados/optdigits.tes', header = None)
 
 # print train_set.corr()[64].mean()
 
